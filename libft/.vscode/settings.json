@@ -1,0 +1,5 @@
+{
+	"files.autoSave": "afterDelay",
+	"terminal.integrated.fontFamily": "Hack Nerd Font",
+	"editor.insertSpaces": false
+}

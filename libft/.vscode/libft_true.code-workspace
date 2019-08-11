@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "/nfs/2019/l/lelee/Desktop/Cadet/libft"
+		}
+	],
+	"settings": {
+		"files.autoSave": "afterDelay",
+		"terminal.integrated.fontFamily": "Hack Nerd Font",
+		"editor.insertSpaces": false,
+		"editor.fontSize": 10,
+		"terminal.integrated.fontSize": 10,
+		"files.associations": {
+			"stdio.h": "c"
+		}
+	}
+}

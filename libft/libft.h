@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 08:42:55 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/09 11:39:54 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/13 17:25:32 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_strtrim(char const *s);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
+int				ft_numcharstrn(const char *str, int tofind, int n);
+
 
 /*
 ** Supportive/Checkers

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tetrovalid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:20:31 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/13 17:15:23 by jfelty           ###   ########.fr       */
+/*   Updated: 2019/08/13 20:51:19 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,20 @@ int		tetrochecker(const char *str, int tetronum)
 	return (1);
 }
 
-int	main()
+int	mastercheck(char *tetros)
 {
 	int tetronum;
-	char tetromino[80] = "...#\n...#\n...#\n...#\n\n.#..\n.#..\n.#..\n.#..\n\n#...\n#...\n#...\n#...\n";
 
-	if (!(tetronum = validfield(tetromino)))
+	if (!(tetronum = validfield(tetros)))
 	{
 		printf("Invalid input\n");				//delet this nephew, and merge with if statement below
-		return (0);
+		return (-1);
 	}
-	if (!(tetrochecker(tetromino, tetronum)))
+	printf("Tetronum %d\n", tetronum);
+	if (!(tetrochecker(tetros, tetronum)))
 	{
 		printf("Invalid tetronimos\n");			//delet this nephew
-		return (0);
+		return (-1);
 	}
 	return (0);
 }
@@ -143,4 +143,3 @@ char	**strtoarr(char *piece)
     }
     return (grid);
 */
-}

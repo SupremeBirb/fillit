@@ -6,16 +6,53 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/13 00:02:59 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/13 20:57:43 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "libft/libft.h"
+#include <stdio.h>
+#include <malloc/malloc.h>
+
+int mastercheck(char *tetros);
+
+int		error(int fd)
+{
+	return(fd < 0);
+}
+
+char	*readfile(int fd, char *av)
+{
+	char *str;
+	int rd;
+
+	if (!(str = ft_strnew(0)))
+		return (NULL);
+	rd = read(fd, str, 4096);
+	str[rd] = '\0';
+	printf("Pieces: \n%s\n", str);
+	return (str);
+}
 
 int main(int ac, char **av)
 {
-	open("Test", O_RDWR);
+	int fd;
+	char *one_grid;
+	int tetronum;
+	
+	if (ac != 3)
+	{
+		ft_putendl("Usage: ./fillit target_filename grid_size");
+		return (-1);
+	}
+	fd = open (av[1], O_RDONLY);
+	if ((one_grid = readfile(fd, av[1])) == NULL || error(fd) || \
+		mastercheck(one_grid) == -1 || grid_print(ac, av))
+	{
+		ft_putstr("ERROR\n");
+		return (-1);
+	}
 	return (0);
 }
 

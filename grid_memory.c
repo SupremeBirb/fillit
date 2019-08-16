@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:12:03 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/13 20:57:33 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/16 13:36:26 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,35 +44,35 @@ char	**ft_grid(char const *xy)
 	return (grid);
 }
 
-int grid_print(int ac, char **av)
+char  **grid(char *av)
 {
-	char size[10];
+	char *size;
 	int j;
-	int i = 0;
+	int i;
 	char **grid;
-	
-	if (ac < 2)
+
+	if (!(size = ft_strnew(4096)))
+		return (NULL);
+	i = 0;
+	while (av[i])
 	{
-		printf("Incorrect Input\n");
-		return (0);
-	}
-	while (av[1][i])
-	{
-		if (ft_isdigit(av[1][i]))
-			size[i] = av[1][i];
+		if (ft_isdigit(av[i]))
+			size[i] = av[i];
 		i++;
 	}
 	grid = ft_grid(size);
+	free(size);
 	i = 0;
+	ft_putendl("\nGrid:");
 	while (grid[i])
 	{
 		j = 0;
 		while (grid[i][j])
 		{
-			printf("%c", grid[i][j]);
+			ft_putchar(grid[i][j]);
 			j++;
 		}
-		printf("\n");
+		putchar('\n');
 		i++;
 	}
 	return (0);

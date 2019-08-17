@@ -6,10 +6,11 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:20:31 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/13 20:51:19 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/16 18:17:18 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//#include "fillit.h"
 #include "libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,7 +22,14 @@ int		validchar(char c)
 	return (0);
 }
 
-int		validfield(char *input)		//returns number of tetrominos, or 0 if invalid
+/*
+**	checks that only valid characters are sent through the input.
+**	also checks that the field is of valid size with correct
+**	tetronimo separators. returns the number of tetronimos sent
+**	through. or 0 if invalid field.
+*/
+
+int		validfield(char *input)
 {
 	int i;
 	int tetronum;
@@ -32,9 +40,9 @@ int		validfield(char *input)		//returns number of tetrominos, or 0 if invalid
 	{
 		if (!(validchar(input[i])))
 			return (0);
-		if (input[i] == '\n' && ((i + 1 - tetronum) % 5 != 0))		//error checks grid width and checks if tetromino is valid
+		if (input[i] == '\n' && ((i + 1 - tetronum) % 5 != 0))
 			return (0);
-		if ((i + 1 - tetronum) % 20 == 0)	//checks for line seperation between inputs and adds to tetro counter
+		if ((i + 1 - tetronum) % 20 == 0)
 		{
 			if (input[i + 1])
 			{
@@ -48,23 +56,54 @@ int		validfield(char *input)		//returns number of tetrominos, or 0 if invalid
 	return (0);
 }
 
-int		connectcheck(const char *i)			//checks for tetronimo boundry blocks
+/*
+**	returns the number of connecting sides for each tetronimo.
+*/
+
+int		connectcheck(const char *i, int n)
 {
-	if (ft_numcharstrn(&i[-5], '\n', 5) == 2)
-		return((*(i + 5) == '#' || *(i + 1) == '#' || *(i - 1) == '#') ? 1 : 0);
-	if (ft_numcharstrn(&i[0], '\n', 5) == 2)
-		return((*(i - 5) == '#' || *(i + 1) == '#' || *(i - 1) == '#') ? 1 : 0);
-	if (*(i - 5) == '#' || *(i + 5) == '#' ||
-	*(i + 1) == '#' || *(i - 1) == '#')
-		return (1);
-	return (0);
+	int touching;
+
+	touching = 0;
+	if (n < 1)
+		return ((*(i + 1) == '#') + (*(i + 5) == '#'));
+	if (n < 4)
+		return ((*(i + 1) == '#') + (*(i - 1) == '#') + (*(i + 5) == '#'));
+	if (ft_numcharstrn(&i[-5], '\n', 5) == 2 && *(i + 5) == '#')
+		touching++;
+	else if (ft_numcharstrn(&i[0], '\n', 5) == 2 && *(i - 5) == '#')
+	{
+		touching++;
+	}
+	else
+	{
+		if (*(i + 5) == '#')
+			touching++;
+		if (*(i - 5) == '#')
+			touching++;
+	}
+	if (*(i + 1) == '#')
+		touching++;
+	if (*(i - 1) == '#')
+		touching++;
+	printf("touching:\t%d\t", touching);
+	return (touching);
 }
+
+/*
+**	checks that each tetronimo is valid. first passes string into ft_numcharstrn, 
+**	which thecks that each segment has 4 '#'. than while we do not encounter two
+**	new line characters in a row, the function checks that each block has a total
+**	of six connecting sides. failing any of these checks returns 0.
+*/
 
 int		tetrochecker(const char *str, int tetronum)
 {
 	int i;
+	int	sides;
 
 	i = 0;
+	sides = 0;
 	while (--tetronum >= 0 && str[i])
 	{
 		if (ft_numcharstrn(&str[i], '#', 20) != 4)
@@ -72,29 +111,36 @@ int		tetrochecker(const char *str, int tetronum)
 		while ((str[i] != '\n' || str[i + 1] != '\n') && str[i])
 		{
 			if (str[i] == '#')
-				if (!(connectcheck(&str[i])))
-					return (0);
+			{
+				sides += connectcheck(&str[i], i);
+				printf("i:\t\t%d\t", i);
+				printf("sides:\t\t%d\n", sides);
+			}
 			i++;
 		}
+		if (sides < 6)
+			return (0);
+		sides = 0;
 		i += 2;
 	}
 	return (1);
 }
 
-int	mastercheck(char *tetros)
+int	mastercheck(char *tetro)
 {
 	int tetronum;
+	//char tetromino[80] = "....\n....\n..##\n..##\n\n.#..\n.#..\n.#..\n.#..\n\n#...\n#...\n#...\n#...\n";
 
-	if (!(tetronum = validfield(tetros)))
+	if (!(tetronum = validfield(tetro)))
 	{
 		printf("Invalid input\n");				//delet this nephew, and merge with if statement below
-		return (-1);
+		return (0);
 	}
-	printf("Tetronum %d\n", tetronum);
-	if (!(tetrochecker(tetros, tetronum)))
+	printf("Tetronum: %d\n", tetronum);
+	if (!(tetrochecker(tetro, tetronum)))
 	{
 		printf("Invalid tetronimos\n");			//delet this nephew
-		return (-1);
+		return (0);
 	}
 	return (0);
 }

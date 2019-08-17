@@ -6,16 +6,16 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/13 20:57:43 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/16 18:46:07 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "libft/libft.h"
 #include <stdio.h>
-#include <malloc/malloc.h>
 
 int mastercheck(char *tetros);
+char **grid(char *av);
 
 int		error(int fd)
 {
@@ -27,10 +27,12 @@ char	*readfile(int fd, char *av)
 	char *str;
 	int rd;
 
-	if (!(str = ft_strnew(0)))
+	if (!(str = ft_strnew(4096)))
 		return (NULL);
 	rd = read(fd, str, 4096);
 	str[rd] = '\0';
+	if (close(fd) == -1)
+		return (NULL);
 	printf("Pieces: \n%s\n", str);
 	return (str);
 }
@@ -48,10 +50,10 @@ int main(int ac, char **av)
 	}
 	fd = open (av[1], O_RDONLY);
 	if ((one_grid = readfile(fd, av[1])) == NULL || error(fd) || \
-		mastercheck(one_grid) == -1 || grid_print(ac, av))
+		mastercheck(one_grid) == -1 || grid(av[2]) == NULL)
 	{
 		ft_putstr("ERROR\n");
-		return (-1);
+		return (0);
 	}
 	return (0);
 }

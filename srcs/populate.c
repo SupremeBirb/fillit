@@ -6,35 +6,22 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:29:29 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/17 02:08:18 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/17 04:56:47 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../fillit.h"
 
-t_tetro	*makelist(char *str, int len)
+t_tetro	*listcoord(char *str, int len, int holdx, t_tetro *newtet)
 {
-	t_tetro	*newtet;
 	int subx;
-	int holdx;
 	int y;
-	int	cordnum;
+	int cordnum;
 
-	holdx = 0;
+	subx = holdx;
 	y = 0;
 	cordnum = -1;
-	while (*str++ != '#')
-	{
-		len--;
-		holdx++;
-		if (*str == '\n')
-			holdx = -1;
-	}
-	subx = holdx;
-	printf("holdx:\t%d\n", holdx);
-	if (!(newtet = (t_tetro *)ft_memalloc(sizeof(*newtet))))
-		return (NULL);
-	while (--len > 0)
+		while (--len > 0)
 	{
 		subx++;
 		if (*str == '\n')
@@ -51,6 +38,47 @@ t_tetro	*makelist(char *str, int len)
 		str++;
 	}
 	return (newtet);
+}
+
+t_tetro	*makelist(char *str, int len)
+{
+	t_tetro	*newtet;
+	// int subx;
+	int holdx;
+	// int y;
+	// int	cordnum;
+
+	holdx = 0;
+	// y = 0;
+	// cordnum = -1;
+	while (*str++ != '#')
+	{
+		len--;
+		holdx++;
+		if (*str == '\n')
+			holdx = -1;
+	}
+	// subx = holdx;
+	printf("holdx:\t%d\n", holdx);
+	if (!(newtet = (t_tetro *)ft_memalloc(sizeof(*newtet))))
+		return (NULL);
+	// while (--len > 0)
+	// {
+	// 	subx++;
+	// 	if (*str == '\n')
+	// 	{
+	// 		y++;
+	// 		subx = -1;
+	// 	}
+	// 	if (*str == '#')
+	// 	{
+	// 		newtet->cords[++cordnum] = (subx - holdx);
+	// 		newtet->cords[++cordnum] = (y);
+	// 		printf("(%d, %d)\n", (subx - holdx), y);
+	// 	}
+	// 	str++;
+	// }
+	return (listcoord(str, len, holdx, newtet));
 }
 
 void	addtolist(t_tetro *str, t_tetro *firsttet)

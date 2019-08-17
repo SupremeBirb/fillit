@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "/nfs/2019/l/lelee/Desktop/Cadet/fillit"
+		}
+	],
+	"settings": {
+		"editor.fontSize": 8,
+		"editor.fontFamily": "Hack Nerd Font",
+		"editor.insertSpaces": false,
+		"editor.tabCompletion": "on",
+		"terminal.integrated.fontSize": 9,
+		"terminal.integrated.fontFamily": "Hack Nerd Font",
+		"markdown.preview.fontSize": 10,
+		"files.autoSave": "afterDelay",
+		"editor.overviewRulerBorder": false,
+		"editor.minimap.enabled": false
+	}
+}

@@ -6,12 +6,11 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/17 02:16:14 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/17 04:18:10 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include "fillit.h"
+#include "../fillit.h"
 
 
 int		error(int fd)

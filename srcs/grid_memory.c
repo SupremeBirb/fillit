@@ -6,11 +6,11 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:12:03 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/17 02:01:35 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/17 04:18:03 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../fillit.h"
 
 char	*grid_mark(int size)
 {

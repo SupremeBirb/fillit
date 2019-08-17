@@ -6,7 +6,7 @@
 #    By: lelee <lelee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/24 08:42:35 by lelee             #+#    #+#              #
-#    Updated: 2019/08/13 17:44:32 by lelee            ###   ########.fr        #
+#    Updated: 2019/08/17 02:17:33 by lelee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ $(NAME): $(OBJ)
 		@ar rc $(NAME) $(OBJ)
 		@ranlib $(NAME)
 		@rm -f $(OBJ)
-		@echo "compilation complete"
+		@echo "Library Complete"
 
 clean: 
 		@rm -f $(OBJ)

@@ -6,14 +6,11 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:20:31 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/16 18:17:18 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/17 02:21:37 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "fillit.h"
-#include "libft/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "fillit.h"
 
 int		validchar(char c)
 {
@@ -129,20 +126,19 @@ int		tetrochecker(const char *str, int tetronum)
 int	mastercheck(char *tetro)
 {
 	int tetronum;
-	//char tetromino[80] = "....\n....\n..##\n..##\n\n.#..\n.#..\n.#..\n.#..\n\n#...\n#...\n#...\n#...\n";
-
+	
 	if (!(tetronum = validfield(tetro)))
 	{
 		printf("Invalid input\n");				//delet this nephew, and merge with if statement below
-		return (0);
+		return (-1);
 	}
 	printf("Tetronum: %d\n", tetronum);
 	if (!(tetrochecker(tetro, tetronum)))
 	{
 		printf("Invalid tetronimos\n");			//delet this nephew
-		return (0);
+		return (-1);
 	}
-	return (0);
+	return (tetronum);
 }
 
 //translates tetromino string into (char **)

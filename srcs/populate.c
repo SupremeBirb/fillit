@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:29:29 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/17 17:35:42 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/17 17:51:20 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,22 @@ t_tetro	*listcoord(char *str, int len, int holdx, t_tetro *newtet)
 	return (newtet);
 }
 
-void	print(t_tetro *firsttet, int tetronum)
+void	print_tet(t_tetro *tet, int tetronum)
 {
 	int i;
+	int j;
 
-	while (firsttet->next && tetronum-- != 0)
+	j = 1;
+	while (tet->next && tetronum-- != 0)
 	{
 		i = -1;
 		while (++i < 6)
 		{
+			printf("Tetromino #%d: x: %d\t", j, tet->cords[i]);
+			printf("y: %d\n", tet->cords[i + 1]);
 			i++;
-			printf("contents of struct: x:%d\t  y:%d\n", firsttet->cords[i]);
-			printf("contents of struct: x:%d\t  y:%d\n", firsttet->cords[i + 1]);
 		}
+		j++;
 	}
 }
 
@@ -100,6 +103,6 @@ int	maker(char *tetro, int tetronum)
 {
 	t_tetro *newunit;
 	newunit = populate(tetro, tetronum);
-	print(newunit, tetronum);
+	print_tet(newunit, tetronum);
 	return (0);
 }

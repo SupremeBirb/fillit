@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:29:29 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/17 17:51:20 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/17 17:54:13 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	print_tet(t_tetro *tet, int tetronum)
 			printf("y: %d\n", tet->cords[i + 1]);
 			i++;
 		}
+		ft_putchar('\n');
 		j++;
 	}
 }

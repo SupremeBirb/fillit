@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:29:29 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/17 04:56:47 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/17 17:35:42 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,28 @@ t_tetro	*listcoord(char *str, int len, int holdx, t_tetro *newtet)
 	return (newtet);
 }
 
+void	print(t_tetro *firsttet, int tetronum)
+{
+	int i;
+
+	while (firsttet->next && tetronum-- != 0)
+	{
+		i = -1;
+		while (++i < 6)
+		{
+			i++;
+			printf("contents of struct: x:%d\t  y:%d\n", firsttet->cords[i]);
+			printf("contents of struct: x:%d\t  y:%d\n", firsttet->cords[i + 1]);
+		}
+	}
+}
+
 t_tetro	*makelist(char *str, int len)
 {
 	t_tetro	*newtet;
-	// int subx;
 	int holdx;
-	// int y;
-	// int	cordnum;
 
 	holdx = 0;
-	// y = 0;
-	// cordnum = -1;
 	while (*str++ != '#')
 	{
 		len--;
@@ -58,26 +69,9 @@ t_tetro	*makelist(char *str, int len)
 		if (*str == '\n')
 			holdx = -1;
 	}
-	// subx = holdx;
 	printf("holdx:\t%d\n", holdx);
 	if (!(newtet = (t_tetro *)ft_memalloc(sizeof(*newtet))))
 		return (NULL);
-	// while (--len > 0)
-	// {
-	// 	subx++;
-	// 	if (*str == '\n')
-	// 	{
-	// 		y++;
-	// 		subx = -1;
-	// 	}
-	// 	if (*str == '#')
-	// 	{
-	// 		newtet->cords[++cordnum] = (subx - holdx);
-	// 		newtet->cords[++cordnum] = (y);
-	// 		printf("(%d, %d)\n", (subx - holdx), y);
-	// 	}
-	// 	str++;
-	// }
 	return (listcoord(str, len, holdx, newtet));
 }
 
@@ -106,5 +100,6 @@ int	maker(char *tetro, int tetronum)
 {
 	t_tetro *newunit;
 	newunit = populate(tetro, tetronum);
+	print(newunit, tetronum);
 	return (0);
 }

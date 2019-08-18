@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:29:29 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/17 17:54:13 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/17 18:19:40 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ t_tetro	*listcoord(char *str, int len, int holdx, t_tetro *newtet)
 	return (newtet);
 }
 
-void	print_tet(t_tetro *tet, int tetronum)
+void	print_tet(t_tetro *tet)
 {
 	int i;
 	int j;
 
 	j = 1;
-	while (tet->next && tetronum-- != 0)
+	while (tet)
 	{
 		i = -1;
 		while (++i < 6)
@@ -57,6 +57,7 @@ void	print_tet(t_tetro *tet, int tetronum)
 		}
 		ft_putchar('\n');
 		j++;
+		tet = tet->next;
 	}
 }
 
@@ -97,13 +98,13 @@ t_tetro	*populate(char *str, int tetronum)
 		str += 21;
 		addtolist(makelist(&(*str), 21), firsttet);
 	}
-	return firsttet;
+	return  firsttet;
 }
 
 int	maker(char *tetro, int tetronum)
 {
 	t_tetro *newunit;
 	newunit = populate(tetro, tetronum);
-	print_tet(newunit, tetronum);
+	print_tet(newunit);
 	return (0);
 }

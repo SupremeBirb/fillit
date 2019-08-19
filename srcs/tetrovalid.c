@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:20:31 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/17 04:18:19 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/18 17:57:59 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		connectcheck(const char *i, int n)
 		touching++;
 	if (*(i - 1) == '#')
 		touching++;
-	printf("touching:\t%d\t", touching);
+	// printf("touching:\t%d\t", touching);
 	return (touching);
 }
 
@@ -110,8 +110,8 @@ int		tetrochecker(const char *str, int tetronum)
 			if (str[i] == '#')
 			{
 				sides += connectcheck(&str[i], i);
-				printf("i:\t\t%d\t", i);
-				printf("sides:\t\t%d\n", sides);
+				// printf("i:\t\t%d\t", i);
+				// printf("sides:\t\t%d\n", sides);
 			}
 			i++;
 		}
@@ -140,48 +140,3 @@ int	mastercheck(char *tetro)
 	}
 	return (tetronum);
 }
-
-//translates tetromino string into (char **)
-//returns NULL if invalid input
-
-/*
-char	**strtoarr(char *piece)
-{
-	int 	i;
-	int		y;
-	int		x;
-	char	**tetrarray;
-
-	i = 0;
-	y = 0;
-	x = 0;
-	tetrarray = (char **)malloc(sizeof(char *) * 4);
-	while (piece[i])
-	{
-		if (piece[i] == '\n')
-		{
-			i++;
-			y++;
-			x = 0;
-		}
-		tetrarray[y][x++] = (piece[i++]);
-	}
-	return (tetrarray);
-	char **grid;
-    int i;
-    int size;
-    
-    if (!str)
-        return (NULL);
-    size = ft_atoi(str);
-    if (!(grid = (char **)ft_memalloc((size + 1) * sizeof(char *))))
-        return (NULL);
-    i = -1;
-    while (++i < size)
-    {
-        grid[i] = grid_mark(size);
-        printf("i: %d\n", i); 
-        printf("string: %s\n", grid[i]);
-    }
-    return (grid);
-*/

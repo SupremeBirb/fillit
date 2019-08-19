@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 09:16:37 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/17 18:14:59 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/18 19:07:10 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef	struct		s_tetro
 {
 	int				cords[6];
+	int				left;
 	struct s_tetro	*next;	
 }					t_tetro;
 
@@ -62,5 +63,16 @@ void		print_tet(t_tetro *tet);
 
 int			error(int fd);
 char		*readfile(int fd);
+
+/*
+** fillit.c
+*/
+
+int			isfree(t_tetro *curr, char **grid, int y, int x);
+char		**place(t_tetro *curr, char **grid, int y, int x, char letter);
+int 		l_boundary(int x, t_tetro *curr);
+char		**fillit(t_tetro *curr, char **grid, int y, int x, char a);
+int 		doit(char **grid, t_tetro *fresh);
+
 
 #endif

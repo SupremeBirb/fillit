@@ -6,11 +6,25 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:29:29 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/17 18:19:40 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/18 19:04:34 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
+
+int leftmost(int *coords)
+{
+	int i;
+
+	i = 0;
+	if (coords[0] < i)
+		i = coords[0];
+	if (coords[2] < i)
+		i = coords[2];
+	if (coords[4] < i)
+		i = coords[4];
+	return (-i);
+}
 
 t_tetro	*listcoord(char *str, int len, int holdx, t_tetro *newtet)
 {
@@ -21,7 +35,7 @@ t_tetro	*listcoord(char *str, int len, int holdx, t_tetro *newtet)
 	subx = holdx;
 	y = 0;
 	cordnum = -1;
-		while (--len > 0)
+	while (--len > 0)
 	{
 		subx++;
 		if (*str == '\n')
@@ -33,13 +47,14 @@ t_tetro	*listcoord(char *str, int len, int holdx, t_tetro *newtet)
 		{
 			newtet->cords[++cordnum] = (subx - holdx);
 			newtet->cords[++cordnum] = (y);
-			printf("(%d, %d)\n", (subx - holdx), y);
 		}
 		str++;
 	}
+	newtet->left = leftmost(newtet->cords);
 	return (newtet);
 }
 
+//for another function
 void	print_tet(t_tetro *tet)
 {
 	int i;
@@ -55,6 +70,7 @@ void	print_tet(t_tetro *tet)
 			printf("y: %d\n", tet->cords[i + 1]);
 			i++;
 		}
+		printf("Leftmost: %d\n", tet->left);
 		ft_putchar('\n');
 		j++;
 		tet = tet->next;
@@ -74,7 +90,6 @@ t_tetro	*makelist(char *str, int len)
 		if (*str == '\n')
 			holdx = -1;
 	}
-	printf("holdx:\t%d\n", holdx);
 	if (!(newtet = (t_tetro *)ft_memalloc(sizeof(*newtet))))
 		return (NULL);
 	return (listcoord(str, len, holdx, newtet));
@@ -98,7 +113,7 @@ t_tetro	*populate(char *str, int tetronum)
 		str += 21;
 		addtolist(makelist(&(*str), 21), firsttet);
 	}
-	return  firsttet;
+	return (firsttet);
 }
 
 int	maker(char *tetro, int tetronum)

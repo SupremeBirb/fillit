@@ -6,19 +6,20 @@
 #    By: lelee <lelee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/11 09:31:17 by jfelty            #+#    #+#              #
-#    Updated: 2019/08/17 04:23:53 by lelee            ###   ########.fr        #
+#    Updated: 2019/08/18 19:14:05 by lelee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-CC = @gcc
+CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 SRC = srcs/tetrovalid.c \
 			srcs/populate.c \
 			srcs/o_r_c.c \
-			srcs/grid_memory.c
+			srcs/grid_memory.c \
+			fillit.c
 
 all: $(NAME)
 

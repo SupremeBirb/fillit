@@ -5,11 +5,11 @@
 		}
 	],
 	"settings": {
-		"editor.fontSize": 8,
+		"editor.fontSize":9,
 		"editor.fontFamily": "Hack Nerd Font",
 		"editor.insertSpaces": false,
 		"editor.tabCompletion": "on",
-		"terminal.integrated.fontSize": 9,
+		"terminal.integrated.fontSize": 10,
 		"terminal.integrated.fontFamily": "Hack Nerd Font",
 		"markdown.preview.fontSize": 10,
 		"files.autoSave": "afterDelay",

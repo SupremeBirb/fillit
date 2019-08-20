@@ -3,82 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   populate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:29:29 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/19 16:01:23 by jfelty           ###   ########.fr       */
+/*   Updated: 2019/08/19 18:19:20 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../fillit.h"
 
-int leftmost(int *coords)
+void    boundary(t_tetro *tet, int *cords)
 {
-	int i;
+    int i;
 
-	i = 0;
-	if (coords[0] < i)
-		i = coords[0];
-	if (coords[2] < coords[0])
-		i = coords[2];
-	if (coords[4] < coords[2])
-		i = coords[4];
-	return (-i);
+    i = 0;
+    if (cords[0] < i)
+        i = cords[0];
+    if (cords[2] < cords[0])
+        i = cords[2];
+    if (cords[4] < cords[2])
+        i = cords[4];
+    tet->left = -i;
+    i = 0;
+    if (cords[1] > i)
+        i = cords[1];
+    if (cords[3] > cords[1])
+        i = cords[3];
+    if (cords[5] > cords[3])
+        i = cords[5];
+    tet->down = i;
 }
 
-int downmost(int *coords)
+void    addtolist(t_tetro *str, t_tetro *firsttet)
 {
-	int i;
-
-	i = 0;
-	if (coords[1] > i)
-		i = coords[1];
-	if (coords[3] > coords[1])
-		i = coords[3];
-	if (coords[5] > coords[3])
-		i = coords[5];
-	return (i);
-}
-
-void	addtolist(t_tetro *str, t_tetro *firsttet)
-{
-	while (firsttet->next)
-		firsttet = firsttet->next;
-	firsttet->next = str;
-	str->next = NULL;
+    while (firsttet->next)
+        firsttet = firsttet->next;
+    firsttet->next = str;
+    str->next = NULL;
 }
 
 /*
-**	is called by makelist to populate the rest of the newtet struct with coordinates.
+**    is called by makelist to populate the rest of the newtet struct with coordinates.
 */
 
-t_tetro	*listcoord(char *str, int len, int holdx, t_tetro *newtet)
+t_tetro    *listcoord(char *str, int len, int holdx, t_tetro *newtet)
 {
-	int subx;
-	int y;
-	int cordnum;
+    int subx;
+    int y;
+    int cordnum;
 
-	subx = holdx;
-	y = 0;
-	cordnum = -1;
-	while (--len > 0)
-	{
-		subx++;
-		if (*str == '\n')
-		{
-			y++;
-			subx = -1;
-		}
-		if (*str == '#')
-		{
-			newtet->cords[++cordnum] = (subx - holdx);
-			newtet->cords[++cordnum] = (y);
-		}
-		str++;
-	}
-	newtet->left = leftmost(newtet->cords);
-	newtet->down = downmost(newtet->cords);
-	return (newtet);
+    subx = holdx;
+    y = 0;
+    cordnum = -1;
+    while (--len > 0)
+    {
+        subx++;
+        if (*str == '\n')
+        {
+            y++;
+            subx = -1;
+        }
+        if (*str == '#')
+        {
+            newtet->cords[++cordnum] = (subx - holdx);
+            newtet->cords[++cordnum] = (y);
+        }
+        str++;
+    }
+    boundary(newtet, newtet->cords);
+    return (newtet);
 }
 
 /*

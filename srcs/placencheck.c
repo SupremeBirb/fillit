@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   placencheck.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 16:02:37 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/19 16:03:12 by jfelty           ###   ########.fr       */
+/*   Updated: 2019/08/19 18:17:38 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../fillit.h"
 
 int		isfree(t_tetro *curr, char **grid, int y, int x)
 {

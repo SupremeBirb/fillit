@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 09:16:37 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/19 16:07:45 by jfelty           ###   ########.fr       */
+/*   Updated: 2019/08/19 18:44:29 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ typedef	struct		s_tetro
 */
 
 char		*grid_mark(int size);
-char		**ft_grid(char const *xy);
-char		**grid(char *av);
+char		**ft_grid(int size);
 
 /*
 ** tetrovalid.c
@@ -81,6 +80,6 @@ int			d_bndry(int y, t_tetro *curr, int gridsize);
 
 int			fillit(t_tetro *curr, char **grid, int y, int x, char a);
 int 		doit(char **grid, t_tetro *fresh);
-
+void		saveprint(char **grid, int y, int x);
 
 #endif

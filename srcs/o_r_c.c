@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   o_r_c.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/19 15:44:30 by jfelty           ###   ########.fr       */
+/*   Updated: 2019/08/19 18:43:43 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../fillit.h"
 
 
-int		error(int fd)
+int			error(int fd)
 {
 	return(fd < 0);
 }
 
-char	*readfile(int fd)
+char		*readfile(int fd)
 {
-	char *str;
-	int rd;
+	char 	*str;
+	int 	rd;
 
 	if (!(str = ft_strnew(4096)))
 		return (NULL);
@@ -33,21 +33,23 @@ char	*readfile(int fd)
 	return (str);
 }
 
-int main(int ac, char **av)
+int 		main(int ac, char **av)
 {
-	int fd;
-	char *one_grid;
-	int tetronum;
-	char **two_grid;
+	int		fd;
+	char 	*one_grid;
+	int 	tetronum;
+	char 	**two_grid;
+	int		size;
 
-	if (ac != 3)
+	if (ac != 2)
 	{
-		ft_putendl("Usage: ./fillit target_filename grid_size");
+		ft_putendl("Usage: ./fillit target_filename");
 		return (-1);
 	}
+	size = 4;
 	fd = open (av[1], O_RDONLY);
 	if ((one_grid = readfile(fd)) == NULL || error(fd) || \
-	(tetronum = mastercheck(one_grid)) == -1 || (two_grid = grid(av[2])) == NULL || \
+	(tetronum = mastercheck(one_grid)) == -1 || (two_grid = ft_grid(size)) == NULL || \
 	maker(one_grid, tetronum) != 0 || !doit(two_grid, populate(one_grid, tetronum)))
 	{
 		ft_putstr("ERROR\n");

@@ -6,11 +6,11 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:12:03 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/18 20:45:41 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/19 18:38:55 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../fillit.h"
 
 char	*grid_mark(int size)
 {
@@ -26,54 +26,16 @@ char	*grid_mark(int size)
 	return (dot);
 }
 
-char	**ft_grid(char const *xy)
+char	**ft_grid(int size)
 {
 	char **grid;
 	int i;
-	int size;
-	
-	if (!xy)
-		return (NULL);
-	size = ft_atoi(xy);
+
 	if (!(grid = (char **)ft_memalloc((size + 1) * sizeof(char *))))
 		return (NULL);
 	i = -1;
 	while (++i < size)
 		grid[i] = grid_mark(size);
-	return (grid);
-}
-
-char  **grid(char *av)
-{
-	char *size;
-	int j;
-	int i;
-	char **grid;
-
-	if (!(size = ft_strnew(4096)))
-		return (NULL);
-	i = 0;
-	while (av[i])
-	{
-		if (ft_isdigit(av[i]))
-			size[i] = av[i];
-		i++;
-	}
-	grid = ft_grid(size);
-	free(size);
-	i = 0;
-	ft_putendl("\nGrid:");
-	while (grid[i])
-	{
-		j = 0;
-		while (grid[i][j])
-		{
-			ft_putchar(grid[i][j]);
-			j++;
-		}
-		putchar('\n');
-		i++;
-	}
-	putchar('\n');
+	saveprint(grid, 0, 0);
 	return (grid);
 }

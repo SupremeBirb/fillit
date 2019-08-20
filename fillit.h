@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 09:16:37 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/18 19:07:10 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/19 16:07:45 by jfelty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef	struct		s_tetro
 {
 	int				cords[6];
 	int				left;
+	int				down;
 	struct s_tetro	*next;	
 }					t_tetro;
 
@@ -65,13 +66,20 @@ int			error(int fd);
 char		*readfile(int fd);
 
 /*
-** fillit.c
+** placencheck.c
 */
 
 int			isfree(t_tetro *curr, char **grid, int y, int x);
 char		**place(t_tetro *curr, char **grid, int y, int x, char letter);
-int 		l_boundary(int x, t_tetro *curr);
-char		**fillit(t_tetro *curr, char **grid, int y, int x, char a);
+char		**clear(t_tetro *curr, char **grid, int y, int x, char letter);
+int 		l_bndry(int x, t_tetro *curr);
+int			d_bndry(int y, t_tetro *curr, int gridsize);
+
+/*
+** fillit.c
+*/
+
+int			fillit(t_tetro *curr, char **grid, int y, int x, char a);
 int 		doit(char **grid, t_tetro *fresh);
 
 

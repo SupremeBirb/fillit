@@ -6,7 +6,7 @@
 #    By: lelee <lelee@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/11 09:31:17 by jfelty            #+#    #+#              #
-#    Updated: 2019/08/18 20:48:48 by lelee            ###   ########.fr        #
+#    Updated: 2019/08/19 18:10:03 by lelee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,14 @@ NAME = fillit
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 SRC = srcs/tetrovalid.c \
 			srcs/populate.c \
 			srcs/o_r_c.c \
 			srcs/grid_memory.c \
-			srcs/fillit.c
+			srcs/fillit.c \
+			srcs/placencheck.c
+			
 
 all: $(NAME)
 
@@ -45,4 +47,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: lib out clean all fclean re
+.PHONY: lib out clean all fclean re fillit

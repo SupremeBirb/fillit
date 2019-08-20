@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tetrovalid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:20:31 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/18 20:43:02 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/19 15:39:21 by jfelty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fillit.h"
+#include "fillit.h"
 
 int		validchar(char c)
 {
@@ -83,12 +83,11 @@ int		connectcheck(const char *i, int n)
 		touching++;
 	if (*(i - 1) == '#')
 		touching++;
-	// printf("touching:\t%d\t", touching);
 	return (touching);
 }
 
 /*
-**	checks that each tetronimo is valid. first passes string into ft_numcharstrn, 
+**	checks that each tetronimo is valid. first passes string into ft_numcharstrn,
 **	which thecks that each segment has 4 '#'. than while we do not encounter two
 **	new line characters in a row, the function checks that each block has a total
 **	of six connecting sides. failing any of these checks returns 0.
@@ -108,11 +107,7 @@ int		tetrochecker(const char *str, int tetronum)
 		while ((str[i] != '\n' || str[i + 1] != '\n') && str[i])
 		{
 			if (str[i] == '#')
-			{
 				sides += connectcheck(&str[i], i);
-				// printf("i:\t\t%d\t", i);
-				// printf("sides:\t\t%d\n", sides);
-			}
 			i++;
 		}
 		if (sides < 6)

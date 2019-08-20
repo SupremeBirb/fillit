@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   o_r_c.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/18 19:12:26 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/19 15:44:30 by jfelty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fillit.h"
+#include "fillit.h"
 
 
 int		error(int fd)
@@ -48,7 +48,7 @@ int main(int ac, char **av)
 	fd = open (av[1], O_RDONLY);
 	if ((one_grid = readfile(fd)) == NULL || error(fd) || \
 	(tetronum = mastercheck(one_grid)) == -1 || (two_grid = grid(av[2])) == NULL || \
-	maker(one_grid, tetronum) != 0 || doit(two_grid, populate(one_grid, tetronum)))
+	maker(one_grid, tetronum) != 0 || !doit(two_grid, populate(one_grid, tetronum)))
 	{
 		ft_putstr("ERROR\n");
 		return (0);

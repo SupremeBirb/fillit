@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:20:31 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/19 18:17:46 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:13:20 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,8 @@ int	mastercheck(char *tetro)
 	int tetronum;
 	
 	if (!(tetronum = validfield(tetro)))
-	{
-		printf("Invalid input\n");				//delet this nephew, and merge with if statement below
 		return (-1);
-	}
-	printf("Tetronum: %d\n", tetronum);
 	if (!(tetrochecker(tetro, tetronum)))
-	{
-		printf("Invalid tetronimos\n");			//delet this nephew
 		return (-1);
-	}
 	return (tetronum);
 }

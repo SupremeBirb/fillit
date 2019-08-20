@@ -6,13 +6,13 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:37:05 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/19 18:46:43 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:02:39 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
 
-void	saveprint(char **grid, int y, int x)
+void	saveprint(char **grid)
 {
 	int i;
 	int j;
@@ -23,10 +23,7 @@ void	saveprint(char **grid, int y, int x)
 		j = 0;
 		while (grid[i][j])
 		{
-			if (i == y && j == x)
-				ft_putchar('o');
-			else
-				ft_putchar(grid[i][j]);
+			ft_putchar(grid[i][j]);
 			j++;
 		}
 		ft_putchar('\n');
@@ -38,7 +35,7 @@ void	saveprint(char **grid, int y, int x)
 int	fillit(t_tetro *curr, char **grid, int y, int x, char a)
 {
 	char temp;
-	saveprint(grid, y, x);
+	saveprint(grid);
 
 	temp = a + 1;
 	if (!curr)
@@ -56,8 +53,3 @@ int	fillit(t_tetro *curr, char **grid, int y, int x, char a)
 	return (grid[y][x + 1] != '\0' ? fillit(curr, grid, y, ++x, a) : fillit(curr, grid, ++y, 0, a));
 }
 
-int doit(char **grid, t_tetro *fresh)
-{
-	fillit(fresh, grid, 0, 0, ('A' - 1));
-	return (1);
-}

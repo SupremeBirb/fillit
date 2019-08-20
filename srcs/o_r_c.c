@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/19 18:43:43 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:09:52 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,25 @@ int 		main(int ac, char **av)
 	int		fd;
 	char 	*one_grid;
 	int 	tetronum;
-	char 	**two_grid;
 	int		size;
+	t_tetro	*piece;
 
 	if (ac != 2)
 	{
 		ft_putendl("Usage: ./fillit target_filename");
 		return (-1);
 	}
-	size = 4;
+	size = 1;
 	fd = open (av[1], O_RDONLY);
-	if ((one_grid = readfile(fd)) == NULL || error(fd) || \
-	(tetronum = mastercheck(one_grid)) == -1 || (two_grid = ft_grid(size)) == NULL || \
-	maker(one_grid, tetronum) != 0 || !doit(two_grid, populate(one_grid, tetronum)))
+	if ((one_grid = readfile(fd)) == NULL || error(fd) ||
+	(tetronum = mastercheck(one_grid)) == -1)
 	{
 		ft_putstr("ERROR\n");
 		return (0);
 	}
+	piece = populate(one_grid, tetronum);
+	while (fillit(piece, ft_grid(++size), 0, 0, ('A' - 1)) != 1)
+		;
 	return (0);
 }
 

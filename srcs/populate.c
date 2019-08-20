@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 15:29:29 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/19 18:19:20 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:08:28 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,4 @@ void	print_tet(t_tetro *tet)
 		j++;
 		tet = tet->next;
 	}
-}
-
-//delete?
-int	maker(char *tetro, int tetronum)
-{
-	t_tetro *newunit;
-	newunit = populate(tetro, tetronum);
-	print_tet(newunit);
-	return (0);
 }

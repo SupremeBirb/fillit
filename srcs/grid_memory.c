@@ -6,16 +6,16 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:12:03 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/19 18:48:56 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/20 18:22:48 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
 
-char	*grid_mark(int size)
+char		*grid_mark(int size)
 {
-	char *dot;
-	int i;
+	char	*dot;
+	int		i;
 
 	i = -1;
 	if (!(dot = ft_strnew((size_t)size)))
@@ -26,16 +26,15 @@ char	*grid_mark(int size)
 	return (dot);
 }
 
-char	**ft_grid(int size)
+char		**ft_grid(int size)
 {
-	char **grid;
-	int i;
+	char	**grid;
+	int		i;
 
 	if (!(grid = (char **)ft_memalloc((size + 1) * sizeof(char *))))
 		return (NULL);
 	i = -1;
 	while (++i < size)
 		grid[i] = grid_mark(size);
-	saveprint(grid);
 	return (grid);
 }

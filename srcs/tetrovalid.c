@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:20:31 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/19 19:13:20 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/20 18:22:41 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,11 @@ int		connectcheck(const char *i, int n)
 }
 
 /*
-**	checks that each tetronimo is valid. first passes string into ft_numcharstrn,
-**	which thecks that each segment has 4 '#'. than while we do not encounter two
-**	new line characters in a row, the function checks that each block has a total
-**	of six connecting sides. failing any of these checks returns 0.
+**	checks that each tetronimo is valid. first passes string into
+**	ft_numcharstrn, which thecks that each segment has 4 '#'. than while
+**	we do not encounter two new line characters in a row, the function
+**	checks that each block has a total of six connecting sides. failing
+** any of these checks returns 0.
 */
 
 int		tetrochecker(const char *str, int tetronum)
@@ -118,10 +119,10 @@ int		tetrochecker(const char *str, int tetronum)
 	return (1);
 }
 
-int	mastercheck(char *tetro)
+int		mastercheck(char *tetro)
 {
 	int tetronum;
-	
+
 	if (!(tetronum = validfield(tetro)))
 		return (-1);
 	if (!(tetrochecker(tetro, tetronum)))

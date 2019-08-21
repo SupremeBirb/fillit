@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 09:16:37 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/19 18:48:46 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/20 12:13:21 by jfelty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,59 +27,61 @@ typedef	struct		s_tetro
 	int				cords[6];
 	int				left;
 	int				down;
-	struct s_tetro	*next;	
+	struct s_tetro	*next;
 }					t_tetro;
 
 /*
 ** grid_memory.c
 */
 
-char		*grid_mark(int size);
-char		**ft_grid(int size);
+char				*grid_mark(int size);
+char				**ft_grid(int size);
 
 /*
 ** tetrovalid.c
 */
 
-int			validchar(char c);
-int			validfield(char *input);
-int			connectcheck(const char *i, int n);
-int			tetrochecker(const char *str, int tetronum);
-int			mastercheck(char *tetro);
+int					validchar(char c);
+int					validfield(char *input);
+int					connectcheck(const char *i, int n);
+int					tetrochecker(const char *str, int tetronum);
+int					mastercheck(char *tetro);
 
 /*
 ** populate.c
 */
 
-t_tetro		*populate(char *str, int tetronum);
-t_tetro		*makelist(char *str, int len);
-void		addtolist(t_tetro *str, t_tetro *firsttet);
-int			maker(char *tetro, int tetronum);
-void		print_tet(t_tetro *tet);
+void				boundary(t_tetro *tet, int *cords);
+t_tetro				*populate(char *str, int tetronum);
+t_tetro				*makelist(char *str, int len);
+void				addtolist(t_tetro *str, t_tetro *firsttet);
+t_tetro				*listcoord(char *str, int len, int holdx, t_tetro *newtet);
 
 /*
 ** O_R_C.c
 */
 
-int			error(int fd);
-char		*readfile(int fd);
+int					error(int fd);
+char				*readfile(int fd);
+int					minsize(int area);
+int					main(int ac, char **av);
 
 /*
 ** placencheck.c
 */
 
-int			isfree(t_tetro *curr, char **grid, int y, int x);
-char		**place(t_tetro *curr, char **grid, int y, int x, char letter);
-char		**clear(t_tetro *curr, char **grid, int y, int x, char letter);
-int 		l_bndry(int x, t_tetro *curr);
-int			d_bndry(int y, t_tetro *curr, int gridsize);
+int					isfree(t_tetro *curr, char **grid, int y, int x);
+char				**place(t_tetro *curr, char **grid, int y, int x);
+char				**clear(t_tetro *curr, char **grid, int y, int x);
+int					l_bndry(int x, t_tetro *curr);
+int					d_bndry(int y, t_tetro *curr, int gridsize);
 
 /*
 ** fillit.c
 */
 
-int			fillit(t_tetro *curr, char **grid, int y, int x, char a);
-int 		doit(char **grid, t_tetro *fresh);
-void		saveprint(char **grid);
+int					fillit(t_tetro *curr, char **grid, int y, int x);
+int					doit(char **grid, t_tetro *fresh);
+void				saveprint(char **grid);
 
 #endif

@@ -36,6 +36,8 @@ typedef	struct		s_tetro
 
 char				*grid_mark(int size);
 char				**ft_grid(int size);
+void				grid_free(char **grid, int size);
+void				deleteList(struct s_tetro **curr);
 
 /*
 ** tetrovalid.c

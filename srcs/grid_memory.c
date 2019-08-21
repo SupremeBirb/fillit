@@ -26,6 +26,27 @@ char		*grid_mark(int size)
 	return (dot);
 }
 
+void		grid_free(char **grid, int size)
+{
+	while (size-- > 0)
+		free(*grid);
+}
+
+void		deleteList(struct s_tetro **curr) 
+{
+	struct s_tetro *tet;
+	struct s_tetro *next;
+
+	tet = *curr;
+	while (tet != NULL)  
+	{ 
+		next = tet->next; 
+		free(tet);
+		tet = next; 
+	}
+	*curr = NULL;
+} 
+
 char		**ft_grid(int size)
 {
 	char	**grid;

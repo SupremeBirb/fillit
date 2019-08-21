@@ -65,6 +65,8 @@ int			main(int ac, char **av)
 	piece = populate(one_grid, tetronum);
 	while (fillit(piece, ft_grid(++size), 0, 0) != 1)
 		;
+	deleteList(&piece);
+	free(one_grid);
 	return (0);
 }
 

@@ -12,24 +12,17 @@
 
 #include "../fillit.h"
 
-char		*grid_mark(int size)
-{
-	char	*dot;
-	int		i;
 
-	i = -1;
-	if (!(dot = ft_strnew((size_t)size)))
-		return (NULL);
-	dot[size--] = '\0';
+void		grid_free(char **grid)
+{
+	int i;
+	int size;
+
+	i = 0;
+	size = ft_strlen(grid[i]);
 	while (i < size)
-		dot[++i] = '.';
-	return (dot);
-}
-
-void		grid_free(char **grid, int size)
-{
-	while (size-- > 0)
-		free(*grid);
+		ft_strdel(&grid[i++]);
+	free(grid);
 }
 
 void		deleteList(struct s_tetro **curr) 
@@ -46,6 +39,20 @@ void		deleteList(struct s_tetro **curr)
 	}
 	*curr = NULL;
 } 
+
+char		*grid_mark(int size)
+{
+	char	*dot;
+	int		i;
+
+	i = -1;
+	if (!(dot = ft_strnew((size_t)size)))
+		return (NULL);
+	dot[size--] = '\0';
+	while (i < size)
+		dot[++i] = '.';
+	return (dot);
+}
 
 char		**ft_grid(int size)
 {

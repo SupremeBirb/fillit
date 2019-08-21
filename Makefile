@@ -14,7 +14,7 @@ NAME = fillit
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 SRC = srcs/tetrovalid.c \
 			srcs/populate.c \
 			srcs/o_r_c.c \
@@ -34,7 +34,8 @@ lib:
 #uses make command in library
 
 out:
-	@$(CC) $(CFLAGS) $(SRC) libft.a -o fillit 
+	@$(CC) $(CFLAGS) $(SRC) libft.a -o fillit
+	@$(CC) $(CFLAGS) $(SRC) -fsanitize=address libft.a -o fillit2
 	@echo "Fillit Generation Complete"
 
 clean:
@@ -43,6 +44,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f libft.a
 	@make -C libft/ fclean
 
 re: fclean all

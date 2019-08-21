@@ -48,12 +48,12 @@ int			fillit(t_tetro *curr, char **grid, int y, int x)
 	if (!curr)
 	{
 		saveprint(grid);
-		grid_free(grid, y);
+		grid_free(grid);
 		return (1);
 	}
 	if (!grid[y])
 	{
-		grid_free(grid, y);
+		//grid_free(grid);
 		return (0);
 	}
 	if (grid[y][x] == '.' && l_bndry(x, curr) &&
@@ -61,10 +61,7 @@ int			fillit(t_tetro *curr, char **grid, int y, int x)
 		if (isfree(curr, grid, y, x))
 		{
 			if (fillit(curr->next, place(curr, grid, y, x), 0, 0))
-			{
-				// grid_free(grid, y);
 				return (1);
-			}
 			else
 				clear(curr, grid, y, x);
 		}

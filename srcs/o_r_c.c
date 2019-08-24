@@ -48,6 +48,7 @@ int			main(int ac, char **av)
 	int		tetronum;
 	int		size;
 	t_tetro	*piece;
+	char **grid;
 
 	if (ac != 2)
 	{
@@ -63,8 +64,12 @@ int			main(int ac, char **av)
 	}
 	size = minsize(tetronum * 4);
 	piece = populate(one_grid, tetronum);
-	while (fillit(piece, ft_grid(++size), 0, 0) != 1)
-		;
+	while (fillit(piece, grid = ft_grid(++size), 0, 0) != 1)
+	{
+		grid_free(grid);
+		free(grid);
+	}
+
 	free(one_grid);
 	deleteList(&piece);
 	return (0);

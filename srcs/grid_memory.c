@@ -18,11 +18,11 @@ void		grid_free(char **grid)
 	int i;
 	int size;
 
-	i = 0;
-	size = ft_strlen(grid[i]);
-	while (i < size)
-		ft_strdel(&grid[i++]);
-	free(grid);
+	i = -1;
+	size = ft_strlen(grid[0]);
+	while (++i < size)
+		ft_strdel(&grid[i]);
+	ft_memdel((void**)grid);
 }
 
 void		deleteList(struct s_tetro **curr) 
@@ -31,14 +31,14 @@ void		deleteList(struct s_tetro **curr)
 	struct s_tetro *next;
 
 	tet = *curr;
-	while (tet != NULL)  
+	while (tet != NULL)
 	{ 
 		next = tet->next; 
 		free(tet);
 		tet = next; 
 	}
 	*curr = NULL;
-} 
+}
 
 char		*grid_mark(int size)
 {

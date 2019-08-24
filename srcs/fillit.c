@@ -49,11 +49,13 @@ int			fillit(t_tetro *curr, char **grid, int y, int x)
 	{
 		saveprint(grid);
 		grid_free(grid);
+		free(grid);
 		return (1);
 	}
 	if (!grid[y])
 	{
-		//grid_free(grid);
+		grid_free(grid);
+		free(grid);
 		return (0);
 	}
 	if (grid[y][x] == '.' && l_bndry(x, curr) &&

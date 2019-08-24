@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 02:15:28 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/20 18:22:37 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/24 16:07:50 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ t_tetro		*populate(char *str, int tetronum)
 		str += 21;
 		addtolist(makelist(&(*str), 21), firsttet);
 	}
+	free(str);
 	return (firsttet);
 }

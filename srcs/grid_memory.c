@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 12:12:03 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/24 15:56:26 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/24 16:03:50 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void		grid_free(char **grid)
 	while (++i < size)
 		ft_strdel(&grid[i]);
 	ft_memdel((void**)grid);
-	free(grid);
 }
 
 void		deleteList(struct s_tetro **curr) 

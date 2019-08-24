@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/24 15:56:52 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/24 16:07:38 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ int			main(int ac, char **av)
 		return (0);
 	}
 	g_size = minsize(tnum * 4);
-	piece = populate(og, tnum);
-	free(og);
+	piece = populate(&og, tnum);
 	while (fillit(piece, grid = ft_grid(++g_size), 0, 0) != 1)
+	{
 		grid_free(grid);
+		free(grid);
+	}
 	deleteList(&piece);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/24 16:07:38 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/24 16:22:45 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,7 @@ int			minsize(int area)
 
 int			main(int ac, char **av)
 {
-	int		fd;
-	char	*og;
-	int		tnum;
-	t_tetro	*piece;
-	char	**grid;
-
+	FILLIT_MACRO;
 	fd = open(av[1], O_RDONLY);
 	if (ac != 2 || error(fd) || (og = readfile(fd)) == NULL ||
 	(tnum = mastercheck(og)) == -1 || tnum > 26)
@@ -62,7 +57,7 @@ int			main(int ac, char **av)
 		return (0);
 	}
 	g_size = minsize(tnum * 4);
-	piece = populate(&og, tnum);
+	piece = populate(og, tnum);
 	while (fillit(piece, grid = ft_grid(++g_size), 0, 0) != 1)
 	{
 		grid_free(grid);

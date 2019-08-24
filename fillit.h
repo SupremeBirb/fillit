@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfelty <jfelty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/11 09:16:37 by jfelty            #+#    #+#             */
-/*   Updated: 2019/08/20 12:13:21 by jfelty           ###   ########.fr       */
+/*   Updated: 2019/08/24 16:23:17 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+
+# define FILLIT_MACRO int fd; char *og; int tnum; t_tetro *piece; char **grid;
 
 /*
 ** cords are [x1, y1, x2, y2, x3, y3]

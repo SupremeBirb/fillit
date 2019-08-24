@@ -6,7 +6,7 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:37:05 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/20 18:22:46 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/24 15:40:17 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ int			fillit(t_tetro *curr, char **grid, int y, int x)
 		return (1);
 	}
 	if (!grid[y])
-	{
 		return (0);
-	}
 	if (grid[y][x] == '.' && l_bndry(x, curr) &&
 	d_bndry(y, curr, ft_strlen(grid[0])))
 		if (isfree(curr, grid, y, x))

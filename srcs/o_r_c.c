@@ -6,11 +6,13 @@
 /*   By: lelee <lelee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:05:53 by lelee             #+#    #+#             */
-/*   Updated: 2019/08/20 18:22:50 by lelee            ###   ########.fr       */
+/*   Updated: 2019/08/24 15:56:52 by lelee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fillit.h"
+
+int g_size = 1;
 
 int			error(int fd)
 {
@@ -44,33 +46,26 @@ int			minsize(int area)
 int			main(int ac, char **av)
 {
 	int		fd;
-	char	*one_grid;
-	int		tetronum;
-	int		size;
+	char	*og;
+	int		tnum;
 	t_tetro	*piece;
-	char **grid;
+	char	**grid;
 
-	if (ac != 2)
-	{
-		ft_putendl("Usage: ./fillit target_filename");
-		return (-1);
-	}
 	fd = open(av[1], O_RDONLY);
-	if ((one_grid = readfile(fd)) == NULL || error(fd) ||
-	(tetronum = mastercheck(one_grid)) == -1 || tetronum > 26)
+	if (ac != 2 || error(fd) || (og = readfile(fd)) == NULL ||
+	(tnum = mastercheck(og)) == -1 || tnum > 26)
 	{
-		ft_putstr("error\n");
+		if (ac != 2)
+			ft_putendl("Usage: ./fillit target_filename");
+		else
+			ft_putstr("error\n");
 		return (0);
 	}
-	size = minsize(tetronum * 4);
-	piece = populate(one_grid, tetronum);
-	while (fillit(piece, grid = ft_grid(++size), 0, 0) != 1)
-	{
+	g_size = minsize(tnum * 4);
+	piece = populate(og, tnum);
+	free(og);
+	while (fillit(piece, grid = ft_grid(++g_size), 0, 0) != 1)
 		grid_free(grid);
-		free(grid);
-	}
-
-	free(one_grid);
 	deleteList(&piece);
 	return (0);
 }

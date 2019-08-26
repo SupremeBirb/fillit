@@ -53,11 +53,15 @@ int			main(int ac, char **av)
 		if (ac != 2)
 			ft_putendl("Usage: ./fillit target_filename");
 		else
+		{
 			ft_putstr("error\n");
+			free(og);
+		}
 		return (0);
 	}
 	g_size = minsize(tnum * 4);
 	piece = populate(og, tnum);
+	free(og);
 	while (fillit(piece, grid = ft_grid(++g_size), 0, 0) != 1)
 	{
 		grid_free(grid);
